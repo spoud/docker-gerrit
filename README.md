@@ -203,6 +203,8 @@
     -e WEBURL=http://your.site.domain:8080 \
     -e USER_NAME=gerrit \
     -e USER_EMAIL=gerrit@your.site.domain \
+    -e MAKE_FIRST_USER_ADMIN=true \
+    -e ENABLE_SIGNED_PUSH=true \
     -d openfrontier/gerrit
   ```
 
