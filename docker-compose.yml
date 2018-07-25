@@ -25,7 +25,7 @@ services:
       OAUTH_GOOGLE_CLIENT_SECRET   : ${GOOGLE_CLIENT_SECRET:-test}
       MAKE_FIRST_USER_ADMIN        : 'true'
       ENABLE_SIGNED_PUSH           : 'true'
-      DOWNLOAD_SCHEME              : ssh
+      DOWNLOAD_SCHEMES             : http ssh
       REPLICATION_REMOTES          : bitbucket
       BITBUCKET_REMOTE             : https://${BB_USER}@bitbucket.org/${BB_ORG}/${name}.git
       BITBUCKET_PASSWORD           : ${BITBUCKET_PASSWORD}

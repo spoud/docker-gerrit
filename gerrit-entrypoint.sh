@@ -115,13 +115,17 @@ if [ "$1" = "/gerrit-start.sh" ]; then
   fi
 
   #Customize gerrit.config
-  #Section download
+  set_gerrit_config repository."*".ownerGroup "Registered Users"
+
   if [ -n "${DOWNLOAD_SCHEMES}" ]; then
-    set_gerrit_config --unset-all download.scheme || true
-    for s in ${DOWNLOAD_SCHEMES}; do
-      set_gerrit_config --add download.scheme ${s}
+    set_gerrit_config --remove-section download || true
+    for s in $DOWNLOAD_SCHEMES; do
+      set_gerrit_config --add download.scheme $s
     done
   fi
+
+  [ -z "${MAKE_FIRST_USER_ADMIN}" ] || set_gerrit_config capability.makeFirstUserAdmin "${MAKE_FIRST_USER_ADMIN}"
+  [ -z "${ENABLE_SIGNED_PUSH}" ] || set_gerrit_config receive.enableSignedPush "${ENABLE_SIGNED_PUSH}"
 
   #Section gerrit
   [ -z "${UI}" ]             || set_gerrit_config gerrit.ui "${UI}"
