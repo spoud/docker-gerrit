@@ -133,7 +133,7 @@ if [ "$1" = "/gerrit-start.sh" ]; then
   fi
 
   [ -z "${MAKE_FIRST_USER_ADMIN}" ] || set_gerrit_config capability.makeFirstUserAdmin "${MAKE_FIRST_USER_ADMIN}"
-  [ -z "${ENABLE_SIGNED_PUSH}" ] || set_gerrit_config receive.enableSignedPush "${ENABLE_SIGNED_PUSH}"
+  [ -z "${ENABLE_SIGNED_PUSH}" ]    || set_gerrit_config receive.enableSignedPush "${ENABLE_SIGNED_PUSH}"
 
   #Section gerrit
   [ -z "${UI}" ]             || set_gerrit_config gerrit.ui "${UI}"
