@@ -45,7 +45,15 @@ if [ "$1" = "/gerrit-start.sh" ]; then
   # Install external plugins
   # The importer plugin is not ready for 3.0.0 yet.
   su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/events-log.jar ${GERRIT_SITE}/plugins/events-log.jar
+<<<<<<< HEAD
   #su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/importer.jar ${GERRIT_SITE}/plugins/importer.jar
+=======
+  su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/importer.jar ${GERRIT_SITE}/plugins/importer.jar
+  su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/ref-protection.jar ${GERRIT_SITE}/plugins/ref-protection.jar
+  su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/avatars-gravatar.jar ${GERRIT_SITE}/plugins/avatars-gravatar.jar
+  su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/slack-integration.jar ${GERRIT_SITE}/plugins/slack-integration.jar
+  su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/reviewers-by-blame.jar ${GERRIT_SITE}/plugins/reviewers-by-blame.jar
+>>>>>>> add four more useful plugins
 
   # Provide a way to customise this image
   echo

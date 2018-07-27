@@ -45,6 +45,26 @@ RUN curl -fSsL \
 #    ${GERRITFORGE_URL}/job/plugin-importer-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/importer/importer.jar \
 #    -o ${GERRIT_HOME}/importer.jar
 
+#ref-protection
+RUN curl -fSsL \
+    ${GERRITFORGE_URL}/job/plugin-ref-protection-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/ref-protection/ref-protection.jar \
+    -o ${GERRIT_HOME}/ref-protection.jar
+
+#reviewers-by-blame
+RUN curl -fSsL \
+    ${GERRITFORGE_URL}/job/plugin-reviewers-by-blame-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/reviewers-by-blame/reviewers-by-blame.jar \
+    -o ${GERRIT_HOME}/reviewers-by-blame.jar
+
+#avatars-gravatar
+RUN curl -fSsL \
+    ${GERRITFORGE_URL}/job/plugin-avatars-gravatar-bazel-master-stable-2.15/${GERRITFORGE_ARTIFACT_DIR}/avatars-gravatar/avatars-gravatar.jar \
+    -o ${GERRIT_HOME}/avatars-gravatar.jar
+
+#slack-integration
+RUN curl -fSsL \
+    ${GERRITFORGE_URL}/job/plugin-slack-integration-mvn-stable-2.15/lastSuccessfulBuild/artifact/target/slack-integration.jar \
+    -o ${GERRIT_HOME}/slack-integration.jar
+
 # Ensure the entrypoint scripts are in a fixed location
 COPY gerrit-entrypoint.sh /
 COPY gerrit-start.sh /
