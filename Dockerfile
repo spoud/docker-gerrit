@@ -8,7 +8,7 @@ ENV GERRIT_SITE ${GERRIT_HOME}/review_site
 ENV GERRIT_WAR ${GERRIT_HOME}/gerrit.war
 ENV GERRIT_VERSION 3.0.1
 ENV GERRIT_USER gerrit2
-ENV GERRIT_INIT_ARGS "--install-plugin=delete-project --install-plugin=gitiles --install-plugin=plugin-manager"
+ENV GERRIT_INIT_ARGS ""
 
 # Add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN adduser -D -h "${GERRIT_HOME}" -g "Gerrit User" -s /sbin/nologin "${GERRIT_USER}"
@@ -50,14 +50,14 @@ RUN curl -fSsL \
     ${GERRITFORGE_URL}/job/plugin-ref-protection-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/ref-protection/ref-protection.jar \
     -o ${GERRIT_HOME}/ref-protection.jar
 
-#reviewers-by-blame
+#its-jira
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-reviewers-by-blame-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/reviewers-by-blame/reviewers-by-blame.jar \
-    -o ${GERRIT_HOME}/reviewers-by-blame.jar
+    ${GERRITFORGE_URL}/job/plugin-its-jira-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/its-jira/its-jira.jar \
+    -o ${GERRIT_HOME}/its-jira.jar
 
 #avatars-gravatar
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-avatars-gravatar-bazel-master-stable-2.15/${GERRITFORGE_ARTIFACT_DIR}/avatars-gravatar/avatars-gravatar.jar \
+    ${GERRITFORGE_URL}/job/plugin-avatars-gravatar-bazel-master-stable-2.16/${GERRITFORGE_ARTIFACT_DIR}/avatars-gravatar/avatars-gravatar.jar \
     -o ${GERRIT_HOME}/avatars-gravatar.jar
 
 #slack-integration
