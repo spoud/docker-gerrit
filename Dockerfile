@@ -50,6 +50,11 @@ RUN curl -fSsL \
     ${GERRITFORGE_URL}/job/plugin-ref-protection-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/ref-protection/ref-protection.jar \
     -o ${GERRIT_HOME}/ref-protection.jar
 
+#reviewers
+RUN curl -fSsL \
+    ${GERRITFORGE_URL}/job/plugin-reviewers-bazel-stable-2.16/${GERRITFORGE_ARTIFACT_DIR}/reviewers/reviewers.jar \
+    -o ${GERRIT_HOME}/reviewers.jar
+
 #its-jira
 RUN curl -fSsL \
     ${GERRITFORGE_URL}/job/plugin-its-jira-bazel-master-stable-2.16/${GERRITFORGE_ARTIFACT_DIR}/its-jira/its-jira.jar \
