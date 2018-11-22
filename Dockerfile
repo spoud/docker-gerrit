@@ -31,7 +31,7 @@ ENV GERRITFORGE_ARTIFACT_DIR=lastSuccessfulBuild/artifact/bazel-bin/plugins
 #events-log
 #This plugin is required by gerrit-trigger plugin of Jenkins.
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-events-log-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/events-log/events-log.jar \
+    ${GERRITFORGE_URL}/job/plugin-events-log-bazel-master/${GERRITFORGE_ARTIFACT_DIR}/events-log/events-log.jar \
     -o ${GERRIT_HOME}/events-log.jar
 
 #oauth2
@@ -52,7 +52,7 @@ RUN curl -fSsL \
 
 #its-jira
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-its-jira-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/its-jira/its-jira.jar \
+    ${GERRITFORGE_URL}/job/plugin-its-jira-bazel-master-stable-2.16/${GERRITFORGE_ARTIFACT_DIR}/its-jira/its-jira.jar \
     -o ${GERRIT_HOME}/its-jira.jar
 
 #avatars-gravatar
@@ -62,7 +62,7 @@ RUN curl -fSsL \
 
 #slack-integration
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-slack-integration-mvn-stable-2.15/lastSuccessfulBuild/artifact/target/slack-integration.jar \
+    ${GERRITFORGE_URL}/job/plugin-slack-integration-mvn-master/lastSuccessfulBuild/artifact/target/slack-integration.jar \
     -o ${GERRIT_HOME}/slack-integration.jar
 
 # Ensure the entrypoint scripts are in a fixed location
