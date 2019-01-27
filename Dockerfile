@@ -52,17 +52,17 @@ RUN curl -fSsL \
 
 #reviewers
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-reviewers-bazel-stable-2.16/${GERRITFORGE_ARTIFACT_DIR}/reviewers/reviewers.jar \
+    ${GERRITFORGE_URL}/job/plugin-reviewers-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/reviewers/reviewers.jar \
     -o ${GERRIT_HOME}/reviewers.jar
 
 #its-jira
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-its-jira-bazel-master-stable-2.16/${GERRITFORGE_ARTIFACT_DIR}/its-jira/its-jira.jar \
+    ${GERRITFORGE_URL}/job/plugin-its-jira-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/its-jira/its-jira.jar \
     -o ${GERRIT_HOME}/its-jira.jar
 
 #avatars-gravatar
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-avatars-gravatar-bazel-master-stable-2.16/${GERRITFORGE_ARTIFACT_DIR}/avatars-gravatar/avatars-gravatar.jar \
+    ${GERRITFORGE_URL}/job/plugin-avatars-gravatar-${PLUGIN_MASTER_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/avatars-gravatar/avatars-gravatar.jar \
     -o ${GERRIT_HOME}/avatars-gravatar.jar
 
 #slack-integration
