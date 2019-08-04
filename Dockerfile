@@ -25,6 +25,7 @@ RUN curl -fSsL https://gerrit-releases.storage.googleapis.com/gerrit-${GERRIT_VE
 
 #Download Plugins
 ENV PLUGIN_VERSION=bazel-stable-3.0
+ENV PLUGIN_MASTER_VERSION=bazel-master-stable-3.0
 ENV GERRITFORGE_URL=https://gerrit-ci.gerritforge.com
 ENV GERRITFORGE_ARTIFACT_DIR=lastSuccessfulBuild/artifact/bazel-bin/plugins
 
@@ -44,11 +45,6 @@ RUN curl -fSsL \
 #RUN curl -fSsL \
 #    ${GERRITFORGE_URL}/job/plugin-importer-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/importer/importer.jar \
 #    -o ${GERRIT_HOME}/importer.jar
-
-#ref-protection
-RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-ref-protection-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/ref-protection/ref-protection.jar \
-    -o ${GERRIT_HOME}/ref-protection.jar
 
 #reviewers
 RUN curl -fSsL \
