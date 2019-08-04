@@ -35,10 +35,10 @@ RUN curl -fSsL \
     ${GERRITFORGE_URL}/job/plugin-events-log-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/events-log/events-log.jar \
     -o ${GERRIT_HOME}/events-log.jar
 
-#oauth2
+#gerrit-oauth-provider
 RUN curl -fSsL \
-    ${GERRITFORGE_URL}/job/plugin-oauth-${PLUGIN_VERSION}/${GERRITFORGE_ARTIFACT_DIR}/oauth/oauth.jar \
-    -o ${GERRIT_HOME}/oauth.jar
+    https://github.com/davido/gerrit-oauth-provider/releases/download/v3.0.0/gerrit-oauth-provider.jar \
+    -o ${GERRIT_HOME}/gerrit-oauth-provider.jar
 
 #importer
 # Not ready for 3.0

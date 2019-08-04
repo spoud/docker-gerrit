@@ -45,6 +45,7 @@ if [ "$1" = "/gerrit-start.sh" ]; then
   # Install external plugins
   # The importer plugin is not ready for 3.0.0 yet.
   su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/events-log.jar ${GERRIT_SITE}/plugins/events-log.jar
+  #su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/importer.jar ${GERRIT_SITE}/plugins/importer.jar
   su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/avatars-gravatar.jar ${GERRIT_SITE}/plugins/avatars-gravatar.jar
   su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/slack-integration.jar ${GERRIT_SITE}/plugins/slack-integration.jar
   su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/its-jira.jar ${GERRIT_SITE}/plugins/its-jira.jar
@@ -268,6 +269,7 @@ EOF
 
   #Section OAUTH general
   if [ "${AUTH_TYPE}" = 'OAUTH' ]  ; then
+    su-exec ${GERRIT_USER} cp -f ${GERRIT_HOME}/gerrit-oauth-provider.jar ${GERRIT_SITE}/plugins/gerrit-oauth-provider.jar
     [ -z "${OAUTH_ALLOW_EDIT_FULL_NAME}" ]     || set_gerrit_config oauth.allowEditFullName "${OAUTH_ALLOW_EDIT_FULL_NAME}"
     [ -z "${OAUTH_ALLOW_REGISTER_NEW_EMAIL}" ] || set_gerrit_config oauth.allowRegisterNewEmail "${OAUTH_ALLOW_REGISTER_NEW_EMAIL}"
 
