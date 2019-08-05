@@ -1,6 +1,15 @@
 #!/usr/bin/env sh
 set -e
 
+su-exec ${GERRIT_USER} mkdir -p "${GERRIT_HOME}/.ssh"
+su-exec ${GERRIT_USER} ssh-keyscan bitbucket.org >> ${GERRIT_HOME}/.ssh/known_hosts
+
+su-exec ${GERRIT_USER} cat > ${GERRIT_HOME}/.ssh/config <<EOF
+ Host *
+    IdentityFile ${GERRIT_SITE}/.ssh/id_rsa_spoudbot
+    PreferredAuthentications publickey
+EOF
+
 set_gerrit_config() {
   su-exec ${GERRIT_USER} git config -f "${GERRIT_SITE}/etc/gerrit.config" "$@"
 }
@@ -88,7 +97,8 @@ if [ "$1" = "/gerrit-start.sh" ]; then
       USERNAME=`eval $(echo echo \\$$(echo "${r}_USERNAME"| awk '{print toupper($0)}'))`
       PASSWORD=`eval $(echo echo \\$$(echo "${r}_PASSWORD"| awk '{print toupper($0)}'))`
 
-      [ -z "${URL}" ]           || set_replication_config remote.${r}.url "${URL}"
+      set_replication_config remote.${r}.threads "3" # set default number of threads across all remotes
+      [ -z "${URL}" ]              || set_replication_config remote.${r}.url "${URL}"
       [ -z "${MIRROR}" ]           || set_replication_config remote.${r}.mirror "${MIRROR}"
       [ -z "${TIMEOUT}" ]          || set_replication_config remote.${r}.timeout "${TIMEOUT}"
       [ -z "${THREADS}" ]          || set_replication_config remote.${r}.threads "${THREADS}"
@@ -101,9 +111,6 @@ if [ "$1" = "/gerrit-start.sh" ]; then
       [ -z "${REPLICATE_PERMISSIONS}" ] || set_replication_config remote.${r}.replicatePermissions "${REPLICATE_PERMISSIONS}"
 
       [ -z "${CREATE_MISSING_REPOSITORIES}" ] || set_replication_config remote.${r}.createMissingRepositories "${CREATE_MISSING_REPOSITORIES}"
-
-      [ -z "${USERNAME}" ] || set_secure_config remote.${r}.username "${USERNAME}"
-      [ -z "${PASSWORD}" ] || set_secure_config remote.${r}.password "${PASSWORD}"
 
       if ! $(git config -f "${GERRIT_SITE}/etc/replication.config" --get-all remote.${r}.projects > /dev/null); then
         for p in ${PROJECTS}; do
